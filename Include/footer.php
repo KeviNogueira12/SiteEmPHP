@@ -11,32 +11,32 @@
                 
                 <div class="col-lg-4 text-center mb-4 mb-lg-0">
                     <div class="d-flex justify-content-center flex-wrap" style="gap: 20px;">
-                        <a href="#" style="color: white; text-decoration: none; transition: 0.3s;" 
+                        <a href="https://linktr.ee/zippa_" style="color: white; text-decoration: none; transition: 0.3s;" 
                            onmouseover="this.style.color='#FF8C00'" onmouseout="this.style.color='white'">
-                          .
+
                         </a>
                         <a href="#how-it-works" style="color: white; text-decoration: none; transition: 0.3s;" 
                            onmouseover="this.style.color='#FF8C00'" onmouseout="this.style.color='white'">
-                            .
+                            
                         </a>
                         <a href="#" style="color: white; text-decoration: none; transition: 0.3s;" 
                            onmouseover="this.style.color='#FF8C00'" onmouseout="this.style.color='white'">
-                            .
+                            
                         </a>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="social-icons mb-3" style="font-size: 1.5rem;">
-                        <a href="#" class="me-3" style="color: white; transition: 0.3s;" 
+                        <a href="https://www.instagram.com/zippaoficial/" class="me-3" style="color: white; transition: 0.3s;" 
                            onmouseover="this.style.color='#e9077f'" onmouseout="this.style.color='white'">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="me-3" style="color: white; transition: 0.3s;" 
+                        <a href="https://api.whatsapp.com/send/?phone=5544999934543&text=Ol%C3%A1!%20Tudo%20certo?%20Gostaria%20de%20saber%20se%20h%C3%A1%20algum%20carro%20dispon%C3%ADvel%20para%20corrida%20agora." class="me-3" style="color: white; transition: 0.3s;" 
                            onmouseover="this.style.color='#25D366'" onmouseout="this.style.color='white'">
                             <i class="fab fa-whatsapp"></i>
                         </a>
-                        <a href="#" class="me-3" style="color: white; transition: 0.3s;" 
+                        <a href="https://www.facebook.com/share/18ZKfihiHP/" class="me-3" style="color: white; transition: 0.3s;" 
                            onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color='white'">
                             <i class="fab fa-facebook"></i>
                         </a>

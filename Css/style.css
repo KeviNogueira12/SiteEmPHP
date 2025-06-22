@@ -1,5 +1,3 @@
-
-        
         body {
             font-family: 'Raleway', sans-serif;
             padding-top: 56px;
@@ -17,11 +15,16 @@
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
+            font-size: 1.5rem;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
+        }
+
+        .titulo {
+            color: var(--zippa-orange) !important;
         }
         
 
@@ -110,7 +113,7 @@
         
         .como_funciona {
             background-color: #f8f9fa;
-            padding: 80px 0;
+            padding: 30px 0;
             text-align: center;
         }
         
@@ -153,9 +156,15 @@
         }
         
         #bannermotora {
-            max-height: 500px;
-            object-fit: cover;
-            width: 100%;
+            max-height: 520px;
+            object-fit: cover; 
+            
+        }
+
+        #bannerpassageiro {
+            height: 570px;
+            width: 500px;
+        
         }
 
         .nav-link {
@@ -198,3 +207,77 @@
             background-color: #fff;
         }
 
+        /* Parte do formulario */
+        form.needs-validation {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(237, 94, 12, 0.08);
+            padding: 2.5rem 2rem;
+            margin-top: 2rem;
+        }
+
+        form .form-label {
+            font-weight: 600;
+            color: var(--zippa-orange);
+            letter-spacing: 0.5px;
+        }
+
+        form .form-control,
+        form .form-select {
+            border-radius: 20px;
+            border: 2px solid var(--zippa-orange);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-family: 'Raleway', Arial, Helvetica, sans-serif;
+            background: #fff;
+        }
+
+        form .form-control:focus,
+        form .form-select:focus {
+            border-color: #d4530a;
+            box-shadow: 0 0 0 0.15rem rgba(237, 94, 12, 0.15);
+            background: #fffbe9;
+        }
+
+        form .input-group-text {
+            background: var(--zippa-orange);
+            color: #fff;
+            border: none;
+            border-radius: 20px 0 0 20px;
+            font-weight: bold;
+        }
+
+        form .form-check-input:checked {
+            background-color: var(--zippa-orange);
+            border-color: var(--zippa-orange);
+        }
+
+        form .btn-primary {
+            background-color: var(--zippa-orange);
+            color: #fff;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 0.7rem 2.2rem;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 16px rgba(237, 94, 12, 0.10);
+            font-size: 1.1rem;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        form .btn-primary:hover {
+            background-color: var(--zippa-orange);
+            color: #fff;
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        form .valid-feedback,
+        form .invalid-feedback {
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        form .col-12:last-child {
+            display: flex;
+            justify-content: center;
+        }

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html" style="color: white; font-size: 1.5rem;">
+            <a class="navbar-brand fw-bold" href="index.php" style="color: white; font-size: 1.5rem;">
                 <i class="fas fa-bolt" style="color: #FF8C00;"></i> ZIPPA
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,10 +9,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="cmotorista.html">Motorista</a>
+                        <a class="nav-link" href="cmotorista.php">Motorista</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="cpassageiro.html">Passageiro</a>
+                        <a class="nav-link" href="cpassageiro.php">Passageiro</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://linktr.ee/zippa_">Sobre a Empresa</a>

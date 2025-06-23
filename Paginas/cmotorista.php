@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-     <link rel="icon" href="imagens/LOGO.webp" type="image/x-icon">
+     <link rel="icon" href="../imagens/LOGO.webp" type="image/x-icon">
+    <link href="../Css/style.css" rel="stylesheet">
     <title>ZIPPA | Motorista</title>
 </head>
 <body> 
 
-  <?php include "paginas/header.php" ?>
+  <?php include "../Include/header.php" ?>
 
     <div class="hero-section" style="background-color: #f8f9fa;">
         <div class="container py-5">
@@ -24,7 +24,7 @@
                     <p class="lead mb-4">O ZIPPA conecta você a passageiros que precisam de uma carona. Tenha flexibilidade de horários e aumente sua renda.</p>  
                 </div>
                 <div class="col-lg-6">
-                    <img id="bannerpassageiro" src="imagens/banner4.jpg" alt="Passageiro ZIPPA" class="img-fluid rounded shadow">
+                    <img id="bannerpassageiro" src="../imagens/banner4.jpg" alt="Passageiro ZIPPA" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -219,7 +219,7 @@ document.getElementById('tipoUsuario').innerHTML += tiposUsuario.map(tipo => `<o
         </div>
     </div>
 
-  <?php include "paginas/footer.php" ?>
+  <?php include "../Include/footer.php" ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -17,6 +17,7 @@
 <body>
     
   <?php include "../Include/header.php" ?>
+  <?php include "../Include/header.php" ?>
 
     <div class="hero-section" style="background-color: #f8f9fa;">
         <div class="container py-5">

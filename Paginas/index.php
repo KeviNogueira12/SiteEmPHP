@@ -17,7 +17,7 @@
 
     <link rel="icon" href="../imagens/LOGO.webp" type="image/x-icon">
 
-    <title>Zippa | Transporte Rápido e Seguro</title>
+    <title>Zippa | Transporte Rápido e Seguro e qualquer coisa</title>
 </head>
 <body>
 

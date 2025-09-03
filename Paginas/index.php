@@ -17,7 +17,7 @@
 
     <link rel="icon" href="../imagens/LOGO.webp" type="image/x-icon">
 
-    <title>Zippa | Transporte Rápido e Seguro e qualquer coisa</title>
+    <title>Zippa | Transporte Rápido e Seguro e kevudo</title>
 </head>
 <body>
 
@@ -97,7 +97,6 @@
         <div class="col-md-6">
                 <div class="card card-zippa card-driver p-4 text-center h-100">
                     <i class="fas fa-car-alt card-icon"></i>
-                    <h2 class="card-title">Seu carro pode virar renda</h2>
                     <h2 class="card-title">Seu carro pode virar renda</h2>
                     <h3 class="mb-3">Seja um Motorista</h3>
                     <p class="mb-4">Cadastre-se como motorista e comece a ganhar dinheiro dirigindo com a Zippa.</p>

@@ -98,9 +98,10 @@
                 <div class="card card-zippa card-driver p-4 text-center h-100">
                     <i class="fas fa-car-alt card-icon"></i>
                     <h2 class="card-title">Seu carro pode virar renda</h2>
+                    <h2 class="card-title">Seu carro pode virar renda</h2>
                     <h3 class="mb-3">Seja um Motorista</h3>
                     <p class="mb-4">Cadastre-se como motorista e comece a ganhar dinheiro dirigindo com a Zippa.</p>
-                    <a href="/SiteEmPHP/Paginas/cmotorista.php" class="btn btn-zippa btn-driver">Cadastrar como Motorista</a>
+                    <a href="cmotorista.php" class="btn btn-zippa btn-driver">Cadastrar como Motorista</a>
                 </div>
             </div>
             
@@ -110,7 +111,7 @@
                     <h2 class="card-title">Seu caminho com conforto e confiança</h2>
                     <h3 class="mb-3">Seja um Passageiro</h3>
                     <p class="mb-4">Cadastre-se como passageiro e aproveite viagens rápidas, seguras e confortáveis com a Zippa.</p>
-                    <a href="/SiteEmPHP/Paginas/cpassageiro.php" class="btn btn-zippa btn-passenger">Cadastrar como Passageiro</a>
+                    <a href="cpassageiro.php" class="btn btn-zippa btn-passenger">Cadastrar como Passageiro</a>
                 </div>
             </div>
             

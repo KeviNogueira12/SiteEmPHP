@@ -1,24 +1,15 @@
 <?php return array(
     'root' => array(
-        'name' => 'bruno/medeiros-moveis',
+        'name' => 'kaio/zippa',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '29adab2d552ae42b302279605d7672b3e37d41e9',
+        'reference' => 'c25f4c5db3066a517f76a53227b447499e65afea',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'bruno/medeiros-moveis' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '29adab2d552ae42b302279605d7672b3e37d41e9',
-            'type' => 'project',
-            'install_path' => __DIR__ . '/../../',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'doctrine/collections' => array(
             'pretty_version' => '2.3.0',
             'version' => '2.3.0.0',
@@ -97,6 +88,15 @@
             'reference' => 'dcbdfe4b211ae09478e192289cae7ab0987b29a4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/persistence',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'kaio/zippa' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'c25f4c5db3066a517f76a53227b447499e65afea',
+            'type' => 'project',
+            'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

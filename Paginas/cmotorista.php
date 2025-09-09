@@ -49,7 +49,7 @@
       Tudo certo!
     </div>
     <div class="invalid-feedback">
-        Por favor, informe um Telefono
+        Por favor, informe um telefone
       </div>
   </div>
   <div class="col-md-4">

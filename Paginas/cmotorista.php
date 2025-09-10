@@ -31,89 +31,105 @@
     </div>
 
 <!-- formulario -->
-    <form class="row g-3 needs-validation" novalidate>
+<form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
     <label for="nomeCompleto" class="form-label">NOME COMPLETO</label>
     <input type="text" class="form-control" id="nomeCompleto" required>
-    <div class="valid-feedback">
-      Tudo certo!
-    </div>
-    <div class="invalid-feedback">
-        Por favor, informe um Nome.
-      </div>
+    <div class="valid-feedback">Tudo certo!</div>
+    <div class="invalid-feedback">Por favor, informe um Nome.</div>
   </div>
-  <div class="col-md-4">
-    <label for="telefone" class="form-label">TELEFONE</label>
-<input type="text" class="form-control" id="telefone" maxlength="10" pattern="[0-9]{5}-[0-9]{4}" placeholder="99999-9999" required>
-    <div class="valid-feedback">
-      Tudo certo!
-    </div>
-    <div class="invalid-feedback">
-        Por favor, informe um telefone
-      </div>
-  </div>
+
+<div class="col-md-4">
+  <label for="telefone" class="form-label">TELEFONE</label>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="telefone" 
+    maxlength="15" 
+    pattern="\(\d{2}\)\s\d{5}-\d{4}" 
+    placeholder="(99) 99999-9999" 
+    required>
+  <div class="valid-feedback">Tudo certo!</div>
+  <div class="invalid-feedback">Por favor, informe um Telefone válido.</div>
+</div>
+
   <div class="col-md-4">
     <label for="email" class="form-label">E-MAIL</label>
     <div class="input-group has-validation">
       <span class="input-group-text" id="inputGroupPrepend">@</span>
-      <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com" required aria-describedby="inputGroupPrepend" required>
-      <div class="invalid-feedback">
-        Por favor, informe um e-mail válido.
-      </div>
-      <div class="valid-feedback">
-      Tudo certo!
-    </div>
+      <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com" required aria-describedby="inputGroupPrepend">
+      <div class="invalid-feedback">Por favor, informe um e-mail válido.</div>
+      <div class="valid-feedback">Tudo certo!</div>
     </div>
   </div>
+
 <div class="col-md-6">
-  <label for="cidade" class="form-label">CIDADE</label>
-  <select class="form-select" id="cidade" required>
-    <option selected disabled value="">Escolha</option>
-  </select>
+  <label for="cpf" class="form-label">CPF</label>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="cpf" 
+    required 
+    maxlength="11"
+    pattern="\d{11}"
+    placeholder="Apenas números"
+    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,11)">
+    
   <div class="invalid-feedback">
-    Por favor, selecione uma cidade.
+    Por favor, informe um CPF válido (11 números).
   </div>
   <div class="valid-feedback">
     Tudo certo!
   </div>
 </div>
-<div class="col-md-3">
-  <label for="tipoUsuario" class="form-label">TIPO DE USUÁRIO</label>
-  <select class="form-select" id="tipoUsuario" required>
-    <option selected disabled value="">Escolha</option>
-  </select>
-  <div class="invalid-feedback">
-    Por favor, selecione o tipo de usuário.
+
+  <div class="col-md-6">
+    <label for="cnh" class="form-label">CNH</label>
+    <input type="text" class="form-control" id="cnh" pattern="\d{11}" maxlength="11" placeholder="Apenas números" required>
+    <div class="invalid-feedback">Por favor, informe uma CNH válida (11 dígitos).</div>
+    <div class="valid-feedback">Tudo certo!</div>
   </div>
-  <div class="valid-feedback">
-    Tudo certo!
+
+  <div class="col-md-6">
+    <label for="cidade" class="form-label">CIDADE</label>
+    <select class="form-select" id="cidade" required>
+      <option selected disabled value="">Escolha</option>
+    </select>
+    <div class="invalid-feedback">Por favor, selecione uma cidade.</div>
+    <div class="valid-feedback">Tudo certo!</div>
   </div>
-</div>
+
+  <div class="col-md-3">
+    <label for="tipoUsuario" class="form-label">TIPO DE USUÁRIO</label>
+    <select class="form-select" id="tipoUsuario" required>
+      <option selected disabled value="">Escolha</option>
+    </select>
+    <div class="invalid-feedback">Por favor, selecione o tipo de usuário.</div>
+    <div class="valid-feedback">Tudo certo!</div>
+  </div>
+
   <div class="col-md-3">
     <label for="senha" class="form-label">CRIE UMA SENHA</label>
     <input type="password" class="form-control" id="senha" required>
-    <div class="invalid-feedback">
-      Por favor, crie uma senha válida.
-    </div>
-    <div class="valid-feedback">
-      Tudo certo!
-    </div>
+    <div class="invalid-feedback">Por favor, crie uma senha válida.</div>
+    <div class="valid-feedback">Tudo certo!</div>
   </div>
+
   <div class="col-12">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
       <label class="form-check-label" for="invalidCheck">
         Concordo com os termos e condições
       </label>
-      <div class="invalid-feedback">
-        Você deve concordar antes de enviar.
-      </div>
+      <div class="invalid-feedback">Você deve concordar antes de enviar.</div>
     </div>
   </div>
+
   <div class="col-12">
     <button class="btn btn-primary" type="submit">Enviar formulário</button>
   </div>
 </form>
+
 
 <!-- SCRIPTS -->
 
@@ -130,12 +146,20 @@ document.querySelector('form.needs-validation').addEventListener('submit', funct
 </script>
 
 <script>
-document.getElementById('telefone').addEventListener('input', function(e) {
+document.getElementById('telefone').addEventListener('input', function() {
   let valor = this.value.replace(/\D/g, ''); 
-  if (valor.length > 5) {
-    valor = valor.replace(/^(\d{5})(\d{0,4}).*/, '$1-$2');
+
+  if (valor.length > 11) {
+    valor = valor.substring(0, 11); 
   }
-  this.value = valor;
+
+  if (valor.length > 6) {
+    this.value = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+  } else if (valor.length > 2) {
+    this.value = valor.replace(/^(\d{2})(\d{0,5})/, '($1) $2');
+  } else {
+    this.value = valor.replace(/^(\d*)/, '($1');
+  }
 });
 </script>
 

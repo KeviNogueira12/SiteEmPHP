@@ -41,7 +41,7 @@
       Tudo certo!
     </div>
     <div class="invalid-feedback">
-        Por favor, informe um Nome.
+        Por favor, informe um Nome válido.
       </div>
   </div>
   <div class="col-md-4">
@@ -51,7 +51,7 @@
       Tudo certo!
     </div>
     <div class="invalid-feedback">
-        Por favor, informe um Telefone.
+        Por favor, informe um Telefone válido.
       </div>
   </div>
   <div class="col-md-4">

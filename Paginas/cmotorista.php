@@ -33,7 +33,7 @@
 <!-- formulario -->
 <form class="row g-3 needs-validation" novalidate>
   <div class="col-md-4">
-    <label for="nomeCompleto" class="form-label">NOME COMPLETO</label>
+    <label for="nomeCompleto" class="form-label" placeholder="Digite seu Nome Completo">NOME COMPLETO</label>
     <input type="text" class="form-control" id="nomeCompleto" required>
     <div class="valid-feedback">Tudo certo!</div>
     <div class="invalid-feedback">Por favor, informe um Nome.</div>

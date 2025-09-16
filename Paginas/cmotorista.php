@@ -32,11 +32,13 @@
 
 <!-- formulario -->
 <form class="row g-3 needs-validation" novalidate>
-  <div class="col-md-4">
-    <label for="nomeCompleto" class="form-label" placeholder="Digite seu Nome Completo">NOME COMPLETO</label>
-    <input type="text" class="form-control" id="nomeCompleto" required>
+  
+     <div class="col-md-4">
+    <label for="nomeCompleto" class="form-label">NOME COMPLETO</label>
+    <input type="text" class="form-control" id="nomeCompleto" placeholder="Digite seu Nome Completo" required>
     <div class="valid-feedback">Tudo certo!</div>
-    <div class="invalid-feedback">Por favor, informe um Nome.</div>
+    <div class="invalid-feedback">Por favor, informe um Nome válido.</div>
+  </div>
   </div>
 
 <div class="col-md-4">
@@ -106,15 +108,6 @@
       <option selected disabled value="">Escolha</option>
     </select>
     <div class="invalid-feedback">Por favor, selecione uma cidade.</div>
-    <div class="valid-feedback">Tudo certo!</div>
-  </div>
-
-  <div class="col-md-3">
-    <label for="tipoUsuario" class="form-label">TIPO DE USUÁRIO</label>
-    <select class="form-select" id="tipoUsuario" required>
-      <option selected disabled value="">Escolha</option>
-    </select>
-    <div class="invalid-feedback">Por favor, selecione o tipo de usuário.</div>
     <div class="valid-feedback">Tudo certo!</div>
   </div>
 

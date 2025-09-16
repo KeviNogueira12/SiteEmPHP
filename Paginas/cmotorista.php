@@ -84,11 +84,21 @@
 </div>
 
   <div class="col-md-6">
-    <label for="cnh" class="form-label">CNH</label>
-    <input type="text" class="form-control" id="cnh" pattern="\d{11}" maxlength="11" placeholder="Apenas números" required>
-    <div class="invalid-feedback">Por favor, informe uma CNH válida (11 dígitos).</div>
-    <div class="valid-feedback">Tudo certo!</div>
-  </div>
+  <label for="cnh" class="form-label">CNH</label>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="cnh" 
+    pattern="\d{11}" 
+    maxlength="11" 
+    placeholder="Apenas números" 
+    inputmode="numeric" 
+    oninput="this.value = this.value.replace(/\D/g, '')" 
+    required>
+  <div class="invalid-feedback">Por favor, informe uma CNH válida (11 dígitos).</div>
+  <div class="valid-feedback">Tudo certo!</div>
+</div>
+
 
   <div class="col-md-6">
     <label for="cidade" class="form-label">CIDADE</label>

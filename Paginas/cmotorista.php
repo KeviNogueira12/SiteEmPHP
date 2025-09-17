@@ -32,11 +32,19 @@
 
 <!-- formulario -->
 <form class="row g-3 needs-validation" novalidate>
+<<<<<<< HEAD
   <div class="col-md-4">
     <label for="nomeCompleto" class="form-label" placeholder="Digite seu Nome Completo">NOME COMPLETO</label>
     <input type="text" class="form-control" id="nomeCompleto" required>
+=======
+  
+     <div class="col-md-4">
+    <label for="nomeCompleto" class="form-label">NOME COMPLETO</label>
+    <input type="text" class="form-control" id="nomeCompleto" placeholder="Digite seu Nome Completo" required>
+>>>>>>> 2134912482b5471e3bcc5a400d1c15866a70781a
     <div class="valid-feedback">Tudo certo!</div>
-    <div class="invalid-feedback">Por favor, informe um Nome.</div>
+    <div class="invalid-feedback">Por favor, informe um Nome válido.</div>
+  </div>
   </div>
 
 <div class="col-md-4">
@@ -84,11 +92,21 @@
 </div>
 
   <div class="col-md-6">
-    <label for="cnh" class="form-label">CNH</label>
-    <input type="text" class="form-control" id="cnh" pattern="\d{11}" maxlength="11" placeholder="Apenas números" required>
-    <div class="invalid-feedback">Por favor, informe uma CNH válida (11 dígitos).</div>
-    <div class="valid-feedback">Tudo certo!</div>
-  </div>
+  <label for="cnh" class="form-label">CNH</label>
+  <input 
+    type="text" 
+    class="form-control" 
+    id="cnh" 
+    pattern="\d{11}" 
+    maxlength="11" 
+    placeholder="Apenas números" 
+    inputmode="numeric" 
+    oninput="this.value = this.value.replace(/\D/g, '')" 
+    required>
+  <div class="invalid-feedback">Por favor, informe uma CNH válida (11 dígitos).</div>
+  <div class="valid-feedback">Tudo certo!</div>
+</div>
+
 
   <div class="col-md-6">
     <label for="cidade" class="form-label">CIDADE</label>
@@ -96,15 +114,6 @@
       <option selected disabled value="">Escolha</option>
     </select>
     <div class="invalid-feedback">Por favor, selecione uma cidade.</div>
-    <div class="valid-feedback">Tudo certo!</div>
-  </div>
-
-  <div class="col-md-3">
-    <label for="tipoUsuario" class="form-label">TIPO DE USUÁRIO</label>
-    <select class="form-select" id="tipoUsuario" required>
-      <option selected disabled value="">Escolha</option>
-    </select>
-    <div class="invalid-feedback">Por favor, selecione o tipo de usuário.</div>
     <div class="valid-feedback">Tudo certo!</div>
   </div>
 

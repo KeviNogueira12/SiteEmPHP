@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Zippa - Seu transporte rápido e seguro. Motoristas particulares e corridas compartilhadas.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
     <link href="../css/style.css" rel="stylesheet">
 
     <link rel="icon" href="../imagens/LOGO.webp" type="image/x-icon">
-
-    <title>Zippa | Transporte Rápido e Seguro e kevudo</title>
+   
+    <title>Zippa | Transporte Rápido e Seguro</title>
 </head>
+
 <body>
 
     <?php include "../Include/header.php" ?>
@@ -37,12 +37,11 @@
     </div>
 </div>
 
-    <!-- Diferenciais -->
     <section class="como_funciona" id="how-it-works">
         <div class="container">
     <div class="section-title">
         <h2 class="titulo">
-             <span class="titulo-laranja"> Nossos Diferenciais</span>
+             <span class="titulo-laranja"> Nossos Diferenciais</span> 
         </h2>
         <div class="linha-laranja"></div>
         <p class="section-desc">Descubra o que torna o Zippa único no mercado de mobilidade urbana</p>

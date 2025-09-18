@@ -3,7 +3,7 @@
         'name' => 'kaio/zippa',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '461f32527f091b9950695b8b783137ea1c01cc7d',
+        'reference' => 'cb378753e9ef91866f37972e064851e85c8e5ccb',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -94,7 +94,7 @@
         'kaio/zippa' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '461f32527f091b9950695b8b783137ea1c01cc7d',
+            'reference' => 'cb378753e9ef91866f37972e064851e85c8e5ccb',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

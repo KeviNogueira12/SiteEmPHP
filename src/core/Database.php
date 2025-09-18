@@ -42,9 +42,9 @@ class Database
         $dbParams = [
             'driver'   => 'pdo_mysql',
             'user'     => 'root',
-            'password' => '',
+            'password' => 'senha',
             'dbname'   => 'zippa',
-            'host'     => 'localhost'
+            'host'     => '10.10.20.96'
         ];
 
         $config = self::getConfig();

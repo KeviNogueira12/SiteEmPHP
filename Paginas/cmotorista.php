@@ -32,16 +32,9 @@
 
 <!-- formulario -->
 <form class="row g-3 needs-validation" novalidate>
-<<<<<<< HEAD
   <div class="col-md-4">
-    <label for="nomeCompleto" class="form-label" placeholder="Digite seu Nome Completo">NOME COMPLETO</label>
-    <input type="text" class="form-control" id="nomeCompleto" required>
-=======
-  
-     <div class="col-md-4">
     <label for="nomeCompleto" class="form-label">NOME COMPLETO</label>
     <input type="text" class="form-control" id="nomeCompleto" placeholder="Digite seu Nome Completo" required>
->>>>>>> 2134912482b5471e3bcc5a400d1c15866a70781a
     <div class="valid-feedback">Tudo certo!</div>
     <div class="invalid-feedback">Por favor, informe um Nome válido.</div>
   </div>

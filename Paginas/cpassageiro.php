@@ -314,6 +314,60 @@ Acesso à Rede e Equipamentos. O Usuário entende e concorda que a utilização 
         </div>
     </div>
 
+    
+    <!-- Tabela de Motoristas Cadastrados -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4 text-zippa-orange">Passageiros Cadastrados</h2>
+        
+        <?php
+        // Conectar ao banco e buscar dados
+        try {
+            $pdo = new PDO("mysql:host=localhost;dbname=zippa_db", "root", "");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            $stmt = $pdo->query("SELECT nome, telefone, cidade, data_cadastro 
+                                FROM motoristas ORDER BY data_cadastro DESC");
+            $motoristas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch(PDOException $e) {
+            $motoristas = [];
+        }
+        ?>
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-zippa">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Data Cadastro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($motoristas) > 0): ?>
+                        <?php foreach ($motoristas as $motorista): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($motorista['nome']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['telefone']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['cidade']); ?></td>
+                            <td><?php echo date('d/m/Y', strtotime($motorista['data_cadastro'])); ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                Nenhum passageiro cadastrado ainda.
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
     <?php include "../Include/footer.php" ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

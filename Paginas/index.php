@@ -104,7 +104,7 @@
         <h2 class="card-title">Seu carro pode virar renda</h2>
         <h3 class="card-subtitle">Seja um Motorista</h3>
         <p>Cadastre-se como motorista e comece a ganhar dinheiro dirigindo com a Zippa.</p>
-        <a href="motorista_simples.php" class="btn btn-zippa mt-auto">Cadastrar como Motorista</a>
+        <a href="cmotorista.php" class="btn btn-zippa mt-auto">Cadastrar como Motorista</a>
 </div>
     </div>
             

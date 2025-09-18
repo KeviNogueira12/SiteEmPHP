@@ -1,52 +1,70 @@
 <?php
-// ===== PROCESSAMENTO DO FORMULÁRIO - INÍCIO =====
+// FORMULÁRIO
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Dados do banco
 $host = 'localhost';
 $dbname = 'zippa';
 $username = 'root';
 $password = '';
 
-// Processar apenas se formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        // Conectar ao banco
+       
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        // Coletar dados do formulário
-        $dados = [
-            'nome' => $_POST['nomeCompleto'],
-            'telefone' => $_POST['telefone'],
-            'email' => $_POST['email'],
-            'cpf' => $_POST['cpf'],
-            'cnh' => $_POST['cnh'],
-            'cidade' => $_POST['cidade']
+        $pdo->beginTransaction();
+        
+        $stmt_motorista = $pdo->prepare("INSERT INTO motoristas (nome, telefone, email, cpf, cnh, cidade) 
+                                      VALUES (:nome, :telefone, :email, :cpf, :cnh, :cidade)");
+        
+        $dados_motorista = [
+            ':nome' => $_POST['nomeCompleto'],
+            ':telefone' => $_POST['telefone'],
+            ':email' => $_POST['email'],
+            ':cpf' => $_POST['cpf'],
+            ':cnh' => $_POST['cnh'],
+            ':cidade' => $_POST['cidade']
         ];
         
-        // Inserir no banco
-        $stmt = $pdo->prepare("INSERT INTO motoristas (nome, telefone, email, cpf, cnh, cidade) 
-                              VALUES (:nome, :telefone, :email, :cpf, :cnh, :cidade)");
+        $stmt_motorista->execute($dados_motorista);
+        $motorista_id = $pdo->lastInsertId();
         
-        if ($stmt->execute($dados)) {
-            $mensagem_sucesso = "✅ Cadastro realizado com sucesso!";
-        }
+        $stmt_veiculo = $pdo->prepare("INSERT INTO veiculos (motorista_id, marca, placa, cor) 
+                                     VALUES (:motorista_id, :marca, :placa, :cor)");
+        
+        $dados_veiculo = [
+            ':motorista_id' => $motorista_id,
+            ':marca' => $_POST['marca'],
+            ':placa' => $_POST['placa'],
+            ':cor' => $_POST['cor']
+        ];
+        
+        $stmt_veiculo->execute($dados_veiculo);
+        
+        $pdo->commit();
+        
+        $mensagem_sucesso = "✅ Cadastro realizado com sucesso! Motorista e veículo cadastrados.";
         
     } catch(PDOException $e) {
+  
+        $pdo->rollBack();
         $mensagem_erro = "❌ Erro: " . $e->getMessage();
     }
 }
-
-// Buscar dados para a tabela
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $motoristas = $pdo->query("SELECT * FROM motoristas ORDER BY data_cadastro DESC")->fetchAll(PDO::FETCH_ASSOC);
+    $motoristas = $pdo->query("
+        SELECT m.*, v.marca, v.placa 
+        FROM motoristas m 
+        LEFT JOIN veiculos v ON m.id = v.motorista_id 
+        ORDER BY m.data_cadastro DESC
+    ")->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
     $motoristas = [];
 }
-// ===== PROCESSAMENTO DO FORMULÁRIO - FIM =====
+
 ?>
 
 <!DOCTYPE html>
@@ -156,6 +174,21 @@ try {
                                 <div class="invalid-feedback">Por favor, informe uma CNH válida (11 dígitos).</div>
                                 <div class="valid-feedback">Tudo certo!</div>
                             </div>
+                            <!-- Campos do Veículo -->
+<div class="col-md-6">
+    <label for="marca" class="form-label">MARCA DO VEÍCULO</label>
+    <input type="text" class="form-control" id="marca" name="marca" placeholder="Ex: Chevrolet, Ford, Volkswagen" required>
+</div>
+
+<div class="col-md-6">
+    <label for="placa" class="form-label">PLACA DO VEÍCULO</label>
+    <input type="text" class="form-control" id="placa" name="placa" placeholder="Ex: ABC1D23" required>
+</div>
+
+<div class="col-md-6">
+    <label for="cor" class="form-label">COR DO VEÍCULO</label>
+    <input type="text" class="form-control" id="cor" name="cor" placeholder="Ex: Preto, Branco, Prata" required>
+</div>
 
                             <div class="col-md-6">
                                 <label for="cidade" class="form-label">CIDADE</label>
@@ -234,42 +267,52 @@ try {
         </div>
 
         <!-- Tabela de Motoristas Cadastrados -->
-        <section class="py-5">
-            <div class="container">
-                <h2 class="text-center mb-4 text-zippa-orange">Motoristas Cadastrados</h2>
-                
-                <?php if (!empty($motoristas)): ?>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Telefone</th>
-                                    <th>Email</th>
-                                    <th>Cidade</th>
-                                    <th>Data Cadastro</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($motoristas as $motorista): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($motorista['nome']); ?></td>
-                                    <td><?php echo htmlspecialchars($motorista['telefone']); ?></td>
-                                    <td><?php echo htmlspecialchars($motorista['email']); ?></td>
-                                    <td><?php echo htmlspecialchars($motorista['cidade']); ?></td>
-                                    <td><?php echo date('d/m/Y', strtotime($motorista['data_cadastro'])); ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                <?php else: ?>
-                    <div class="alert alert-info text-center">
-                        📝 Nenhum motorista cadastrado ainda. Preencha o formulário acima!
-                    </div>
-                <?php endif; ?>
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-4 text-zippa-orange">Motoristas e Veículos Cadastrados</h2>
+        
+        <?php if (!empty($motoristas)): ?>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Cidade</th>
+                            <th>Veículo</th>
+                            <th>Placa</th>
+                            <th>Data Cadastro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($motoristas as $motorista): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($motorista['nome']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['telefone']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['email']); ?></td>
+                            <td><?php echo htmlspecialchars($motorista['cidade']); ?></td>
+                            <td>
+                                <?php if (!empty($motorista['marca'])): ?>
+                                    
+                                <?php else: ?>
+                                    <span class="text-muted">Nenhum veículo</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo !empty($motorista['placa']) ? htmlspecialchars($motorista['placa']) : '---'; ?></td>
+                            <td><?php echo date('d/m/Y', strtotime($motorista['data_cadastro'])); ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
-        </section>
+        <?php else: ?>
+            <div class="alert alert-info text-center">
+                📝 Nenhum motorista cadastrado ainda. Preencha o formulário acima!
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
 
         <!-- Vantagens -->
         <section class="vantagens-section py-5">

@@ -13,7 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="../Css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
 
     <link rel="icon" href="../imagens/LOGO.webp" type="image/x-icon">
 
@@ -23,25 +23,30 @@
 
     <?php include "../Include/header.php" ?>
 
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <a href="#footer">
-                    <img id="bannermotora" src="../imagens/2.png" class="d-block w-100" alt="Zippa - Transporte rápido e seguro">
-                </a>
+    <div id="mainCarousel" class="carousel slide banner-zippa" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="../imagens/2.png" class="d-block w-100 banner-img" alt="Zippa - Transporte rápido e seguro">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+                <h1 class="banner-title">Transporte rápido, seguro e acessível</h1>
+                <p class="banner-desc">Viaje com conforto e confiança com a Zippa</p>
+                <a href="https://linktr.ee/zippa_"  class="btn btn-zippa btn-lg mt-3">Saiba Mais</a>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Diferenciais -->
     <section class="como_funciona" id="how-it-works">
         <div class="container">
-            <div class="section-title">
-                <h2 class="titulo">
-                    Nossos Diferenciais <i class="fa-solid fa-down-long" style="color: #ed5e0c;"></i>
-                </h2>
-                <p>Descubra o que torna o Zippa único no mercado de mobilidade urbana</p>
-            </div>
+    <div class="section-title">
+        <h2 class="titulo">
+             <span class="titulo-laranja"> Nossos Diferenciais</span>
+        </h2>
+        <div class="linha-laranja"></div>
+        <p class="section-desc">Descubra o que torna o Zippa único no mercado de mobilidade urbana</p>
+    </div>
             <div data-aos="fade-up">
                 <div class="features">
                     <div class="feature-card">
@@ -92,27 +97,28 @@
     </section>
 
     <div class="container py-5 my-4">
-        <div class="row g-4">
+        <div class="row g-3">
 
         <div class="col-md-6">
-                <div class="card card-zippa card-driver p-4 text-center h-100">
-                    <i class="fas fa-car-alt card-icon"></i>
-                    <h2 class="card-title">Seu carro pode virar renda</h2>
-                    <h3 class="mb-3">Seja um Motorista</h3>
-                    <p class="mb-4">Cadastre-se como motorista e comece a ganhar dinheiro dirigindo com a Zippa.</p>
-                    <a href="cmotorista.php" class="btn btn-zippa btn-driver">Cadastrar como Motorista</a>
-                </div>
-            </div>
+    <div class="card card-zippa d-flex flex-column h-100 text-center">
+        <i class="fas fa-car-alt card-icon"></i>
+        <h2 class="card-title">Seu carro pode virar renda</h2>
+        <h3 class="card-subtitle">Seja um Motorista</h3>
+        <p>Cadastre-se como motorista e comece a ganhar dinheiro dirigindo com a Zippa.</p>
+        <a href="cmotorista.php" class="btn btn-zippa mt-auto">Cadastrar como Motorista</a>
+</div>
+    </div>
             
-            <div class="col-md-6">
-                <div class="card card-zippa card-passenger p-4 text-center h-100">
-                    <i class="fas fa-user-friends card-icon"></i>
-                    <h2 class="card-title">Seu caminho com conforto e confiança</h2>
-                    <h3 class="mb-3">Seja um Passageiro</h3>
-                    <p class="mb-4">Cadastre-se como passageiro e aproveite viagens rápidas, seguras e confortáveis com a Zippa.</p>
-                    <a href="cpassageiro.php" class="btn btn-zippa btn-passenger">Cadastrar como Passageiro</a>
-                </div>
-            </div>
+           <div class="col-md-6">
+    <div class="card card-zippa d-flex flex-column h-100 text-center">
+        <i class="fas fa-users card-icon"></i>
+        <h2 class="card-title">Seu caminho com conforto e confiança</h2>
+        <h3 class="card-subtitle">Seja um Passageiro</h3>
+        <p>Cadastre-se como passageiro e aproveite viagens rápidas, seguras e confortáveis com a Zippa.</p>
+        <a href="cpassageiro.php" class="btn btn-zippa mt-auto">Cadastrar como Passageiro</a>
+    </div>
+    </div>
+</div>
             
         </div>
     </div>

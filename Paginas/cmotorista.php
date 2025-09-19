@@ -1,5 +1,5 @@
 <?php
-// FORMULÁRIO
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -10,7 +10,7 @@ $password = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-       
+        
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
         
         $stmt_motorista->execute($dados_motorista);
-        $motorista_id = $pdo->lastInsertId();
+        $motorista_id = $pdo->lastInsertId(); 
         
         $stmt_veiculo = $pdo->prepare("INSERT INTO veiculos (motorista_id, marca, placa, cor) 
                                      VALUES (:motorista_id, :marca, :placa, :cor)");
@@ -43,12 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $stmt_veiculo->execute($dados_veiculo);
         
+      
         $pdo->commit();
         
         $mensagem_sucesso = "✅ Cadastro realizado com sucesso! Motorista e veículo cadastrados.";
         
     } catch(PDOException $e) {
-  
+       
         $pdo->rollBack();
         $mensagem_erro = "❌ Erro: " . $e->getMessage();
     }
@@ -64,7 +65,6 @@ try {
 } catch(PDOException $e) {
     $motoristas = [];
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -294,6 +294,7 @@ try {
                             <td><?php echo htmlspecialchars($motorista['cidade']); ?></td>
                             <td>
                                 <?php if (!empty($motorista['marca'])): ?>
+                                    <?php echo htmlspecialchars($motorista['marca']); ?>
                                     
                                 <?php else: ?>
                                     <span class="text-muted">Nenhum veículo</span>

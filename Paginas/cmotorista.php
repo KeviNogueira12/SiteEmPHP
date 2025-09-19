@@ -3,70 +3,335 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+class Database {
+    private $host;
+    private $dbname;
+    private $username;
+    private $password;
+    private $pdo;
+    private static $instance = null;
+
+    private function __construct($host, $dbname, $username, $password) {
+        $this->host = $host;
+        $this->dbname = $dbname;
+        $this->username = $username;
+        $this->password = $password;
+        $this->connect();
+    }
+
+    public static function getInstance($host = null, $dbname = null, $username = null, $password = null) {
+        if (self::$instance === null) {
+            self::$instance = new self($host, $dbname, $username, $password);
+        }
+        return self::$instance;
+    }
+
+    private function connect() {
+        try {
+            $this->pdo = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw new Exception("Erro de conexão: " . $e->getMessage());
+        }
+    }
+
+    public function getConnection() {
+        return $this->pdo;
+    }
+
+    public function beginTransaction() {
+        return $this->pdo->beginTransaction();
+    }
+
+    public function commit() {
+        return $this->pdo->commit();
+    }
+
+    public function rollBack() {
+        return $this->pdo->rollBack();
+    }
+
+    public function lastInsertId() {
+        return $this->pdo->lastInsertId();
+    }
+}
+
+class Motorista {
+    private $id;
+    private $nome;
+    private $telefone;
+    private $email;
+    private $cpf;
+    private $cnh;
+    private $cidade;
+    private $dataCadastro;
+
+    public function __construct($dados = []) {
+        if (!empty($dados)) {
+            $this->setDados($dados);
+        }
+    }
+
+    public function setDados($dados) {
+        $this->setNome($dados['nome'] ?? '');
+        $this->setTelefone($dados['telefone'] ?? '');
+        $this->setEmail($dados['email'] ?? '');
+        $this->setCpf($dados['cpf'] ?? '');
+        $this->setCnh($dados['cnh'] ?? '');
+        $this->setCidade($dados['cidade'] ?? '');
+    }
+
+    // Getters e Setters com validações
+    public function getId() { return $this->id; }
+    public function setId($id) { $this->id = $id; }
+
+    public function getNome() { return $this->nome; }
+    public function setNome($nome) { 
+        if (empty($nome)) throw new InvalidArgumentException("Nome não pode ser vazio");
+        $this->nome = $nome; 
+    }
+
+    public function getTelefone() { return $this->telefone; }
+    public function setTelefone($telefone) { $this->telefone = $telefone; }
+
+    public function getEmail() { return $this->email; }
+    public function setEmail($email) { 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) throw new InvalidArgumentException("Email inválido");
+        $this->email = $email; 
+    }
+
+    public function getCpf() { return $this->cpf; }
+    public function setCpf($cpf) { $this->cpf = $cpf; }
+
+    public function getCnh() { return $this->cnh; }
+    public function setCnh($cnh) { 
+        if (strlen($cnh) !== 11) throw new InvalidArgumentException("CNH deve ter 11 dígitos");
+        $this->cnh = $cnh; 
+    }
+
+    public function getCidade() { return $this->cidade; }
+    public function setCidade($cidade) { $this->cidade = $cidade; }
+
+    public function getDataCadastro() { return $this->dataCadastro; }
+    public function setDataCadastro($dataCadastro) { $this->dataCadastro = $dataCadastro; }
+
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'telefone' => $this->telefone,
+            'email' => $this->email,
+            'cpf' => $this->cpf,
+            'cnh' => $this->cnh,
+            'cidade' => $this->cidade,
+            'data_cadastro' => $this->dataCadastro
+        ];
+    }
+}
+
+class Veiculo {
+    private $id;
+    private $motoristaId;
+    private $marca;
+    private $placa;
+    private $cor;
+    private $dataCadastro;
+
+    public function __construct($dados = []) {
+        if (!empty($dados)) {
+            $this->setDados($dados);
+        }
+    }
+
+    public function setDados($dados) {
+        $this->setMotoristaId($dados['motorista_id'] ?? 0);
+        $this->setMarca($dados['marca'] ?? '');
+        $this->setPlaca($dados['placa'] ?? '');
+        $this->setCor($dados['cor'] ?? '');
+    }
+
+    // Getters e Setters
+    public function getId() { return $this->id; }
+    public function setId($id) { $this->id = $id; }
+
+    public function getMotoristaId() { return $this->motoristaId; }
+    public function setMotoristaId($motoristaId) { 
+        if ($motoristaId <= 0) throw new InvalidArgumentException("ID do motorista inválido");
+        $this->motoristaId = $motoristaId; 
+    }
+
+    public function getMarca() { return $this->marca; }
+    public function setMarca($marca) { 
+        if (empty($marca)) throw new InvalidArgumentException("Marca não pode ser vazia");
+        $this->marca = $marca; 
+    }
+
+    public function getPlaca() { return $this->placa; }
+    public function setPlaca($placa) { 
+        if (empty($placa)) throw new InvalidArgumentException("Placa não pode ser vazia");
+        $this->placa = $placa; 
+    }
+
+    public function getCor() { return $this->cor; }
+    public function setCor($cor) { $this->cor = $cor; }
+
+    public function getDataCadastro() { return $this->dataCadastro; }
+    public function setDataCadastro($dataCadastro) { $this->dataCadastro = $dataCadastro; }
+
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'motorista_id' => $this->motoristaId,
+            'marca' => $this->marca,
+            'placa' => $this->placa,
+            'cor' => $this->cor,
+            'data_cadastro' => $this->dataCadastro
+        ];
+    }
+}
+
+class MotoristaRepository {
+    private $db;
+
+    public function __construct(Database $database) {
+        $this->db = $database;
+    }
+
+    public function salvar(Motorista $motorista) {
+        $pdo = $this->db->getConnection();
+        
+        $stmt = $pdo->prepare("INSERT INTO motoristas (nome, telefone, email, cpf, cnh, cidade) 
+                              VALUES (:nome, :telefone, :email, :cpf, :cnh, :cidade)");
+        
+        $dados = $motorista->toArray();
+        unset($dados['id'], $dados['data_cadastro']);
+        
+        $stmt->execute($dados);
+        $motorista->setId($pdo->lastInsertId());
+        
+        return $motorista;
+    }
+
+    public function listarComVeiculos() {
+        $pdo = $this->db->getConnection();
+        
+        $stmt = $pdo->query("
+            SELECT m.*, v.marca, v.placa 
+            FROM motoristas m 
+            LEFT JOIN veiculos v ON m.id = v.motorista_id 
+            ORDER BY m.data_cadastro DESC
+        ");
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+class VeiculoRepository {
+    private $db;
+
+    public function __construct(Database $database) {
+        $this->db = $database;
+    }
+
+    public function salvar(Veiculo $veiculo) {
+        $pdo = $this->db->getConnection();
+        
+        $stmt = $pdo->prepare("INSERT INTO veiculos (motorista_id, marca, placa, cor) 
+                             VALUES (:motorista_id, :marca, :placa, :cor)");
+        
+        $dados = $veiculo->toArray();
+        unset($dados['id'], $dados['data_cadastro']);
+        
+        $stmt->execute($dados);
+        $veiculo->setId($pdo->lastInsertId());
+        
+        return $veiculo;
+    }
+}
+
+class MotoristaService {
+    private $motoristaRepository;
+    private $veiculoRepository;
+    private $db;
+
+    public function __construct(Database $database) {
+        $this->db = $database;
+        $this->motoristaRepository = new MotoristaRepository($database);
+        $this->veiculoRepository = new VeiculoRepository($database);
+    }
+
+    public function cadastrarMotoristaComVeiculo($dadosMotorista, $dadosVeiculo) {
+        try {
+            $this->db->beginTransaction();
+
+            // Criar e salvar motorista
+            $motorista = new Motorista($dadosMotorista);
+            $motorista = $this->motoristaRepository->salvar($motorista);
+
+            // Criar e salvar veículo
+            $dadosVeiculo['motorista_id'] = $motorista->getId();
+            $veiculo = new Veiculo($dadosVeiculo);
+            $this->veiculoRepository->salvar($veiculo);
+
+            $this->db->commit();
+            return true;
+
+        } catch (Exception $e) {
+            $this->db->rollBack();
+            throw $e;
+        }
+    }
+
+    public function listarMotoristas() {
+        return $this->motoristaRepository->listarComVeiculos();
+    }
+}
+
+
 $host = 'localhost';
 $dbname = 'zippa';
 $username = 'root';
 $password = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $pdo->beginTransaction();
-        
-        $stmt_motorista = $pdo->prepare("INSERT INTO motoristas (nome, telefone, email, cpf, cnh, cidade) 
-                                      VALUES (:nome, :telefone, :email, :cpf, :cnh, :cidade)");
-        
-        $dados_motorista = [
-            ':nome' => $_POST['nomeCompleto'],
-            ':telefone' => $_POST['telefone'],
-            ':email' => $_POST['email'],
-            ':cpf' => $_POST['cpf'],
-            ':cnh' => $_POST['cnh'],
-            ':cidade' => $_POST['cidade']
-        ];
-        
-        $stmt_motorista->execute($dados_motorista);
-        $motorista_id = $pdo->lastInsertId(); 
-        
-        $stmt_veiculo = $pdo->prepare("INSERT INTO veiculos (motorista_id, marca, placa, cor) 
-                                     VALUES (:motorista_id, :marca, :placa, :cor)");
-        
-        $dados_veiculo = [
-            ':motorista_id' => $motorista_id,
-            ':marca' => $_POST['marca'],
-            ':placa' => $_POST['placa'],
-            ':cor' => $_POST['cor']
-        ];
-        
-        $stmt_veiculo->execute($dados_veiculo);
-        
-      
-        $pdo->commit();
-        
-        $mensagem_sucesso = "✅ Cadastro realizado com sucesso! Motorista e veículo cadastrados.";
-        
-    } catch(PDOException $e) {
-       
-        $pdo->rollBack();
-        $mensagem_erro = "❌ Erro: " . $e->getMessage();
-    }
-}
+$mensagem_sucesso = null;
+$mensagem_erro = null;
+
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $motoristas = $pdo->query("
-        SELECT m.*, v.marca, v.placa 
-        FROM motoristas m 
-        LEFT JOIN veiculos v ON m.id = v.motorista_id 
-        ORDER BY m.data_cadastro DESC
-    ")->fetchAll(PDO::FETCH_ASSOC);
-} catch(PDOException $e) {
+    $database = Database::getInstance($host, $dbname, $username, $password);
+    $motoristaService = new MotoristaService($database);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $dadosMotorista = [
+            'nome' => $_POST['nomeCompleto'],
+            'telefone' => $_POST['telefone'],
+            'email' => $_POST['email'],
+            'cpf' => $_POST['cpf'],
+            'cnh' => $_POST['cnh'],
+            'cidade' => $_POST['cidade']
+        ];
+
+        $dadosVeiculo = [
+            'marca' => $_POST['marca'],
+            'placa' => $_POST['placa'],
+            'cor' => $_POST['cor']
+        ];
+
+        if ($motoristaService->cadastrarMotoristaComVeiculo($dadosMotorista, $dadosVeiculo)) {
+            $mensagem_sucesso = "Cadastro realizado com sucesso! Motorista e veículo cadastrados.";
+        }
+
+    }
+
+    // Listar motoristas para exibição
+    $motoristas = $motoristaService->listarMotoristas();
+
+} catch (Exception $e) {
+    $mensagem_erro = " Erro: " . $e->getMessage();
     $motoristas = [];
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -202,7 +467,7 @@ try {
                             </div>
 
                             <div class="col-md-6">
-                                <label for="senha" class="form-label">CRIE UMA SENHA</label>
+                                <label for="senha" class="form-label">CRIE UMA SENha</label>
                                 <div class="password-wrapper">
                                     <input type="password" class="form-control" id="senha" name="senha" required>
                                     <button type="button" class="password-toggle" aria-label="Mostrar senha">
@@ -330,7 +595,7 @@ try {
                                 <i class="fas fa-money-bill-wave"></i>
                             </div>
                             <h4>Lucro atrativo</h4>
-                            <p>Fique com a maior parte do valor da corrida e receba semanalmente</p>
+                            <p>Fique com a maior parte do valor da corrida и receba semanalmente</p>
                         </div>
                     </div>
                     
